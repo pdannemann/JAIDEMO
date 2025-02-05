@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "servor --reload"
+    "start": "servor --reload",
+    "build": "mkdir -p dist && cp -r *.html *.js *.css dist/ && cp -r src dist/"
   },
   "dependencies": {
     "servor": "^4.0.2",
