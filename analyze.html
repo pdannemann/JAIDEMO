@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyzing - Nebenkosten Analyzer AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+</head>
+<body>
+    <div class="loading-bar" id="loading-bar"></div>
+    
+    <div class="loading-screen visible">
+        <div class="loading-steps">
+            <div class="step" data-step="1">
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="step-text">
+                        <h3>PDF wird geladen</h3>
+                        <p>Ihre Datei wird verarbeitet</p>
+                    </div>
+                    <div class="step-progress">
+                        <div class="progress-ring">
+                            <svg class="progress-ring__circle" width="30" height="30">
+                                <circle class="progress-ring__circle-bg" r="12" cx="15" cy="15" />
+                                <circle class="progress-ring__circle-fg" r="12" cx="15" cy="15" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step" data-step="2">
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="step-text">
+                        <h3>Textextraktion</h3>
+                        <p>Relevante Informationen werden erkannt</p>
+                    </div>
+                    <div class="step-progress">
+                        <div class="progress-ring">
+                            <svg class="progress-ring__circle" width="30" height="30">
+                                <circle class="progress-ring__circle-bg" r="12" cx="15" cy="15" />
+                                <circle class="progress-ring__circle-fg" r="12" cx="15" cy="15" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step" data-step="3">
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="step-text">
+                        <h3>Rechtliche Prüfung</h3>
+                        <p>Überprüfung der Konformität</p>
+                    </div>
+                    <div class="step-progress">
+                        <div class="progress-ring">
+                            <svg class="progress-ring__circle" width="30" height="30">
+                                <circle class="progress-ring__circle-bg" r="12" cx="15" cy="15" />
+                                <circle class="progress-ring__circle-fg" r="12" cx="15" cy="15" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step" data-step="4">
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="step-text">
+                        <h3>Kostenanalyse</h3>
+                        <p>Berechnung der Einsparpotenziale</p>
+                    </div>
+                    <div class="step-progress">
+                        <div class="progress-ring">
+                            <svg class="progress-ring__circle" width="30" height="30">
+                                <circle class="progress-ring__circle-bg" r="12" cx="15" cy="15" />
+                                <circle class="progress-ring__circle-fg" r="12" cx="15" cy="15" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="analyze.js"></script>
+</body>
+</html>

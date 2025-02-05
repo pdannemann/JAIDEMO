@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nebenkosten Analyzer AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <h1>Nebenkosten. Einfach</h1>
+            <p>Kostenlose Ersteinschätzung erhalten</p>
+            <form id="upload-form">
+                <input type="file" id="pdf-upload" accept=".pdf" style="display: none;">
+                <button type="button" class="upload-button" onclick="document.getElementById('pdf-upload').click()">
+                    <i class="fas fa-upload"></i> PDF hochladen
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('pdf-upload').addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Die Datei ist zu groß. Bitte verwenden Sie eine kleinere PDF-Datei (max. 5MB).');
+                return;
+            }
+
+            try {
+                // Create a chunk size of 500KB
+                const CHUNK_SIZE = 500 * 1024;
+                const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
+                
+                // Clear any existing chunks
+                sessionStorage.clear();
+                
+                // Store metadata
+                sessionStorage.setItem('pdfMetadata', JSON.stringify({
+                    name: file.name,
+                    size: file.size,
+                    type: file.type,
+                    totalChunks: totalChunks
+                }));
+                
+                // Read and store file in chunks
+                for (let i = 0; i < totalChunks; i++) {
+                    const start = i * CHUNK_SIZE;
+                    const end = Math.min(start + CHUNK_SIZE, file.size);
+                    const chunk = file.slice(start, end);
+                    
+                    const reader = new FileReader();
+                    await new Promise((resolve, reject) => {
+                        reader.onload = function(e) {
+                            try {
+                                sessionStorage.setItem(`pdfChunk_${i}`, e.target.result);
+                                resolve();
+                            } catch (error) {
+                                reject(error);
+                            }
+                        };
+                        reader.onerror = reject;
+                        reader.readAsDataURL(chunk);
+                    });
+                }
+                
+                window.location.href = 'analyze.html';
+            } catch (error) {
+                console.error('Error processing file:', error);
+                alert('Fehler beim Verarbeiten der Datei. Bitte versuchen Sie es erneut.');
+            }
+        });
+    </script>
+</body>
+</html>

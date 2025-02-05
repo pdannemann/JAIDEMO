@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report - Nebenkosten Analyzer AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="results-table visible">
+        <div class="total-savings">
+            <div>Nebenkostenanalyse</div>
+            <p>Detaillierte Aufstellung der Nebenkostenabrechnung</p>
+            <div class="amount">0 €</div>
+            <button onclick="showDebugModal()" class="debug-button">
+                <i class="fas fa-bug"></i> Debug Info
+            </button>
+        </div>
+        <div id="results-container" class="results-container">
+            <!-- Results will be dynamically inserted here -->
+        </div>
+        <button onclick="window.location.href='index.html'" class="cta-button">
+            Neue Analyse starten <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <!-- Debug Modal -->
+    <div id="debug-modal-overlay" class="debug-modal-overlay">
+        <div class="debug-modal">
+            <button class="debug-modal-close" onclick="closeDebugModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Debug Information</h2>
+            
+            <div class="debug-section">
+                <h3>Gemini Input:</h3>
+                <div id="gemini-input" class="debug-content"></div>
+            </div>
+            
+            <div class="debug-section">
+                <h3>Gemini Output:</h3>
+                <div id="gemini-output" class="debug-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="report.js"></script>
+</body>
+</html>

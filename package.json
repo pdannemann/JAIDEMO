@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start": "servor --reload"
+  },
+  "dependencies": {
+    "servor": "^4.0.2",
+    "pdf-parse": "^1.1.1"
+  },
+  "type": "module"
+}
